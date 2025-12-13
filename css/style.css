@@ -21,9 +21,10 @@ body {
 
 /* Glass Waves */
 .glass-waves {
-    position: absolute;
-    width: 520px;   
-    height: 520px;  
+    will-change: transform;
+    position: fixed;
+    width: 680px;
+    height: 680px;  
     pointer-events: none;
     z-index: 0;
 }
@@ -35,11 +36,11 @@ body {
     fill: rgba(142, 182, 52, 0.26); /* richer green */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 50%;
+    border-radius: 42% 58% 60% 40% / 45% 35% 65% 55%;
 }
 
 .glass-waves svg:nth-child(2) {
-    fill: rgba(142, 182, 52, 0.18); /* layered depth */
+    fill: rgba(142, 182, 52, 0.2); /* layered depth */
     transform: translate(55px, 55px);
 }
 
@@ -47,22 +48,56 @@ body {
 .top-right {
     top: -120px;
     right: -120px;
+    animation: leaf-float 12s ease-in-out infinite;
 }
 
 .bottom-left {
     bottom: -120px;
     left: -120px;
+    animation: leaf-float 16s ease-in-out infinite reverse;
+}
+
+
+/* leaf animation */
+@keyframes leaf-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(60px) rotate(3deg);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glass-waves {
+        animation: none;
+    }
 }
 
 /* Wrapper */
 .page-wrapper {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     position: relative;
     z-index: 1;
-    padding: 3.5rem 1.5rem;
+    padding: 2rem 1.5rem;
+    /* padding: 3.5rem 1.5rem; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+
+.home-section {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.about-section {
+    padding-top: 4rem;
 }
 
 /* Hero */
@@ -72,8 +107,9 @@ body {
 }
 
 .logo {
-    width: 140px;
-    margin-bottom: 1.5rem;
+    width: 600px;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.08));
 }
 
 .hero h1 {
@@ -97,7 +133,7 @@ body {
 }
 
 .intro h2 {
-    font-size: 1.9rem;
+    font-size: 3rem;
     font-weight: 500;
     margin-bottom: 1rem;
 }
@@ -105,51 +141,81 @@ body {
 .intro p {
     max-width: 620px;
     margin: 0 auto;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #6b6b6b;
 }
 
 /* About */
 .about {
-    background: rgba(255, 255, 255, 0); /* more transparent */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    max-width: 1200px;
+    margin: 0 auto 2rem auto;
+    padding: 3rem 2.5rem 2rem;
 
-    padding: 3rem 2rem;
-    margin: 0 auto 1.5rem auto;
-    max-width: 1100px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
 
-    text-align: center;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 
-    border-radius: 28px; /* curved edges */
     box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.06),
+        0 14px 32px rgba(0, 0, 0, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.4);
-
-    border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.about h3 {
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3.5rem;
+}
+
+.about-left h3 {
+    margin-bottom: 1rem;
     font-weight: 500;
     letter-spacing: 0.6px;
 }
 
-
-.about p {
-    max-width: 740px;
-    margin: 0 auto;
-    font-size: 0.95rem;
-    color: rgba(80, 80, 81, 0.85);
+.about-left p {
+    margin-bottom: 0.9rem;
+    line-height: 1.6;
+    max-width: 520px;
 }
 
-/* Responsive */
+.about-right h4 {
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+}
+
+.about-right p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.about-right a {
+    color: var(--dark);
+    text-decoration: none;
+}
+
+.about-right a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(80, 80, 81, 0.6);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
 @media (max-width: 768px) {
-    .glass-waves {
-        width: 300px;
-        height: 300px;
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
-    .hero h1 {
-        font-size: 2.1rem;
+    .about {
+        padding: 2.5rem 2rem;
     }
 }
