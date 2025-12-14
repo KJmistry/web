@@ -1,50 +1,59 @@
 :root {
+    /* Brand color tokens */
     --green: #8EB634;
     --dark: #505051;
     --white: #FDFCFC;
 }
 
-/* Reset */
+/* --------------------------------------------------
+   CSS Reset
+-------------------------------------------------- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base */
+/* --------------------------------------------------
+   Base Page Styles
+-------------------------------------------------- */
 body {
     font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
     background-color: var(--white);
     color: var(--dark);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevents horizontal scroll on most browsers */
 }
 
-/* Glass Waves */
+/* --------------------------------------------------
+   Decorative Glass Leaves (Fixed Background Elements)
+-------------------------------------------------- */
+
 .glass-waves {
-    will-change: transform;
-    position: fixed;
+    position: fixed;          /* Keeps leaves fixed to viewport */
     width: 680px;
-    height: 680px;  
-    pointer-events: none;
+    height: 680px;
+    pointer-events: none;     /* Decorative only */
     z-index: 0;
+    will-change: transform;   /* Smooth animation hint */
 }
 
 .glass-waves svg {
     position: absolute;
     width: 100%;
     height: 100%;
-    fill: rgba(142, 182, 52, 0.26); /* richer green */
+    fill: rgba(142, 182, 52, 0.26);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 42% 58% 60% 40% / 45% 35% 65% 55%;
 }
 
+/* Secondary layered leaf */
 .glass-waves svg:nth-child(2) {
-    fill: rgba(142, 182, 52, 0.2); /* layered depth */
+    fill: rgba(142, 182, 52, 0.2);
     transform: translate(55px, 55px);
 }
 
-/* Placement */
+/* Leaf placement + animation timing */
 .top-right {
     top: -120px;
     right: -120px;
@@ -57,8 +66,7 @@ body {
     animation: leaf-float 16s ease-in-out infinite reverse;
 }
 
-
-/* leaf animation */
+/* Floating leaf animation */
 @keyframes leaf-float {
     0% {
         transform: translateY(0) rotate(0deg);
@@ -71,24 +79,24 @@ body {
     }
 }
 
+/* Accessibility: disable animation if user prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .glass-waves {
         animation: none;
     }
 }
 
-/* Wrapper */
+/* --------------------------------------------------
+   Layout Containers
+-------------------------------------------------- */
+
 .page-wrapper {
-    /* min-height: 100vh; */
-    position: relative;
+    position: relative; /* Creates stacking context above leaves */
     z-index: 1;
     padding: 2rem 1.5rem;
-    /* padding: 3.5rem 1.5rem; */
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
 }
 
+/* Full viewport home section */
 .home-section {
     min-height: 100vh;
     display: flex;
@@ -96,36 +104,30 @@ body {
     justify-content: center;
 }
 
+/* Spacing before About section */
 .about-section {
     padding-top: 4rem;
 }
 
-/* Hero */
+/* --------------------------------------------------
+   Hero / Logo
+-------------------------------------------------- */
+
 .hero {
     text-align: center;
     margin-top: 4rem;
 }
 
 .logo {
-    width: 600px;
+    width: 600px; /* Desktop-first logo size */
     margin-bottom: 2rem;
     filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.08));
 }
 
-.hero h1 {
-    font-size: 2.6rem;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-}
+/* --------------------------------------------------
+   Intro Content
+-------------------------------------------------- */
 
-.tagline {
-    margin-top: 0.4rem;
-    font-size: 1.1rem;
-    color: var(--green);
-    letter-spacing: 0.8px;
-}
-
-/* Content */
 .content {
     max-width: 900px;
     margin: 4rem auto;
@@ -145,10 +147,13 @@ body {
     color: #6b6b6b;
 }
 
-/* About */
+/* --------------------------------------------------
+   About / Contact Section
+-------------------------------------------------- */
+
 .about {
     max-width: 1200px;
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 2rem;
     padding: 3rem 2.5rem 2rem;
 
     backdrop-filter: blur(14px);
@@ -200,6 +205,7 @@ body {
     text-decoration: underline;
 }
 
+/* Footer copyright line */
 .footer-bottom {
     margin-top: 2.5rem;
     padding-top: 1.5rem;
@@ -209,6 +215,10 @@ body {
     text-align: center;
 }
 
+/* --------------------------------------------------
+   Tablet & Mobile Layout Adjustments
+-------------------------------------------------- */
+
 @media (max-width: 768px) {
     .about-grid {
         grid-template-columns: 1fr;
@@ -217,5 +227,52 @@ body {
 
     .about {
         padding: 2.5rem 2rem;
+    }
+}
+
+/* --------------------------------------------------
+   Mobile Scaling & Overflow Fixes
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    /* Scale down decorative leaves for small screens */
+    .glass-waves {
+        width: 360px;
+        height: 360px;
+    }
+
+    .top-right {
+        top: -120px;
+        right: -120px;
+    }
+
+    .bottom-left {
+        bottom: -120px;
+        left: -120px;
+    }
+
+    /* Scale logo to fit mobile viewport */
+    .logo {
+        width: 260px;
+    }
+
+    /* Reduce vertical spacing */
+    .hero {
+        margin-top: 2rem;
+    }
+
+    .content {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    /* Mobile-friendly typography */
+    .intro h2 {
+        font-size: 2rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
     }
 }
