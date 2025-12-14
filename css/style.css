@@ -275,4 +275,10 @@ body {
     .intro p {
         font-size: 1rem;
     }
+
+    /* Prevent backdrop-filter flicker on mobile */
+    .glass-waves svg {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
 }
