@@ -24,6 +24,17 @@ body {
     overflow-x: hidden; /* Prevents horizontal scroll on most browsers */
 }
 
+body {
+    overflow-y: scroll;     /* enable vertical scrolling */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* For Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+    width: 0;                   /* removes the scrollbar */
+    background: transparent;    /* optional: just to be safe */
+}
+
 /* --------------------------------------------------
    Decorative Glass Leaves (Fixed Background Elements)
 -------------------------------------------------- */
@@ -145,6 +156,48 @@ body {
     margin: 0 auto;
     font-size: 1.1rem;
     color: #6b6b6b;
+}
+
+/* --------------------------------------------------
+   Leave Feedback Button
+-------------------------------------------------- */
+
+.glass-button {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--dark);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-button:hover {
+    transform: translateY(-4px);
+}
+
+.feedback-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 3.5rem 0 4.5rem;
+    width: 100%;
+}
+
+.feedback-cta .glass-button {
+    font-size: 1rem;
+    letter-spacing: 0.4px;
 }
 
 /* --------------------------------------------------

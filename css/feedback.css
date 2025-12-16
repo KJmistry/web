@@ -1,0 +1,101 @@
+/* --------------------------------------------------
+   Feedback Page Layout
+-------------------------------------------------- */
+.feedback-page {
+    min-height: 100vh;
+    text-align: center;
+    padding: 4rem 1rem;
+    position: relative;
+}
+
+.feedback-title {
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+}
+
+/* Feedback Container (relative positioning for random placement) */
+.feedback-container {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+}
+
+/* --------------------------------------------------
+   Glass Review Cards
+-------------------------------------------------- */
+.feedback-card {
+    position: absolute;
+    padding: 1rem 1.2rem;
+    max-width: 250px;
+    min-width: 180px;
+
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #333;
+
+    transform-origin: center center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover pop effect */
+.feedback-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.18);
+}
+
+/* Reviewer name style */
+.feedback-card .reviewer {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #4B4B4B;
+}
+
+/* Feedback message style */
+.feedback-card .message {
+    font-size: 0.85rem;
+    color: #222;
+}
+
+/* --------------------------------------------------
+   Action Button
+-------------------------------------------------- */
+.feedback-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+/* --------------------------------------------------
+   Floating Animation
+-------------------------------------------------- */
+@keyframes float-card {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(6px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Slight random delay for each card */
+.feedback-card.animate {
+    animation: float-card 5s ease-in-out infinite;
+}
+
+/* --------------------------------------------------
+   Hide Scrollbar but keep scrolling
+-------------------------------------------------- */
+body::-webkit-scrollbar {
+    width: 0px;
+}
+body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}

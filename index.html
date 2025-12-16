@@ -29,125 +29,37 @@
         </svg>
     </div>
 
+    <!-- WhatsApp Floating Button -->
+    <a
+        href="https://wa.me/917041127117"
+        class="whatsapp-float"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+    >
+        <img src="img/wa-logo.svg" alt="Chat on WhatsApp" />
+    </a>
+
+    <!-- Persistent Shell -->
     <div class="page-wrapper">
-
-        <!-- Home Section (full viewport) -->
-        <section class="home-section">
-
-            <header class="hero">
-                <img
-                    src="img/logo.svg"
-                    alt="Oro Exotics Logo"
-                    class="logo"
-                />
-            </header>
-
-            <main class="content">
-                <section class="intro">
-                    <h2>Growing with Intent.</h2>
-                    <p>
-                        A developing agricultural venture grounded in quality,
-                        consistency, and responsible practices.
-                    </p>
-                </section>
-            </main>
-
-        </section>
-
-        <!-- About / Contact Section -->
-        <section class="about-section">
-            <footer class="about">
-
-                <div class="about-grid">
-
-                    <div class="about-left">
-                        <h3>About Oro Exotics</h3>
-                        <p>
-                            Oro Exotics is an independent agricultural initiative focused on
-                            building a reliable and transparent produce brand.
-                        </p>
-                        <p>
-                            This platform serves as a point of reference for our identity and
-                            contact information as our operations continue to evolve,
-                            with further updates being introduced over time.
-                        </p>
-                        <p>
-                            Suggestions and feedback are always welcome.
-                        </p>
-                    </div>
-
-                    <div class="about-right contact-section">
-                    <h4 class="section-title">Contact</h4>
-
-                    <div class="contact-item">
-                        <span class="contact-icon">
-                            <!-- Phone Icon -->
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.3 22 2 13.7 2 3c0-.6.4-1 1-1h4.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1L6.6 10.8z"/>
-                            </svg>
-                        </span>
-                        <div>
-                            <strong>Phone</strong>
-                            <a href="tel:+917041127117">+91 70411 27117</a>
-                            <a href="tel:+919316494418">+91 93164 94418</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <span class="contact-icon">
-                            <!-- Email Icon -->
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                        </span>
-                        <div>
-                            <strong>Email</strong>
-                            <a href="mailto:contact@oroexotics.in">contact@oroexotics.in</a>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <span class="contact-icon">
-                            <!-- Location Icon -->
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
-                            </svg>
-                        </span>
-                        <div>
-                            <strong>Address</strong>
-                            <p class="address">
-                                Vadsar, Vadodara<br />
-                                Gujarat – 390010, India
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                </div>
-
-                <div class="footer-bottom">
-                    © Oro Exotics. All rights reserved.
-                </div>
-
-            </footer>
-        </section>
-
-        <!-- WhatsApp Floating Button -->
-        <a
-            href="https://wa.me/917041127117"
-            class="whatsapp-float"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Chat on WhatsApp"
-        >
-            <img
-                src="img/wa-logo.svg"
-                alt="Chat on WhatsApp"
-            />
-        </a>
-
-
+        <div id="app"></div>
     </div>
+
+    <script>
+        async function loadPage(page) {
+            const res = await fetch(page + ".html");
+            document.getElementById("app").innerHTML = await res.text();
+        }
+
+        document.addEventListener("click", e => {
+            const link = e.target.closest("[data-page]");
+            if (!link) return;
+            e.preventDefault();
+            loadPage(link.dataset.page);
+        });
+
+        loadPage("home");
+    </script>
 
 </body>
 </html>
