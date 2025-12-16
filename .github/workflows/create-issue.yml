@@ -1,0 +1,39 @@
+name: Create feedback issue
+
+on:
+  repository_dispatch:
+    types: [feedback]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create GitHub issue from feedback
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const payload = context.payload.client_payload;
+
+            if (!payload || !payload.message) {
+              throw new Error("Invalid payload");
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: payload.title || "Website Feedback",
+              body: `
+**Name:** ${payload.name || "Anonymous"}
+
+**Message:**
+${payload.message}
+
+---
+_Submitted via website feedback form_
+              `
+            });
